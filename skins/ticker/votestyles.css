@@ -1,0 +1,224 @@
+/* This section is used when you are displaying votes as a ticker */
+.tickercontainer {
+	border-bottom: 1px solid #E5E5E5;
+	background-color: transparent;
+	font-size: 1.4em;
+	padding: 0.2em 0 0.15em 0;
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+	color: #999999;
+	cursor: default;
+}
+.tickertext .imagecontainer {
+	border-bottom: 0px solid #996666;
+	border-left: 0px solid #E5E5E5;
+	border-right: 0px solid #E5E5E5;
+	border-top: 0px;
+	background-color: transparent;
+	text-align: center;
+	display: block;
+	color: #0099CC;
+}
+
+.discusslink {
+	font-style: normal;
+	font-size: 8pt;
+	letter-spacing: -1px;
+	text-align: center;
+}
+
+.discusslink a {
+	color: #9900FF;
+}
+
+.tickertext .votelink {
+	border-bottom: 0px solid #E5E5E5;
+	border-left: 0px solid #E5E5E5;
+	border-right: 0px solid #E5E5E5;
+	border-top: 0px;
+	font-size: 8pt;
+	letter-spacing: -1px;
+	padding: 2px 0 0 1px;
+	height: 10px;
+	background-color: transparent;
+	display: block;
+	color: #777777;
+}
+
+.votelink {
+	font-size: 8pt;
+	letter-spacing: -1px;
+	vertical-align: middle;
+}
+.votelink a {
+	color: #9900FF;
+}
+.votelink a:hover {
+	color: #9966FF;
+}
+.votelink > div {
+	margin-bottom: 2px;
+	line-height: 180%;
+}
+.hirecommend {
+	margin: 6px;
+	font-size: 11pt;
+	color: #00BB00;
+	font-weight: bold;
+}
+.suggeststatus {
+	display: none;
+	font-size: 8pt;
+}
+.voteicon  {
+	width: 16px;
+	height: 16px;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-bottom: -4px;
+}
+.postinfo {
+display: table; margin-top: 4px; width:100%; background: #e2ddcd; border: 1px solid #f2efe5; overflow: auto;
+}
+.postinfo > div {
+	display: table-row;
+}
+.postinfo > div > div {
+	display: table-cell; padding-top: 6px; padding-bottom: 6px; min-width: 210px; width: 210px; text-align: center; vertical-align: top;
+}
+.postinfo > div > div > div {
+	vertical-align: middle; margin-left: 4px; margin-bottom: 2px;
+}
+.postinfometa {
+	display: table-cell;
+	min-width: 330px;
+	vertical-align: top;
+	padding-left: 7px;
+	border-left: 2px solid #f2efe5;
+	padding-bottom: 6px;
+	padding-right: 6px;
+}
+.postinfodate {
+	font-size: 8pt;
+	font-style: italic;
+}
+.small_comm_num {
+	position: relative; left: 9px; bottom: 2px; z-index:100;
+}
+.small_comm_num a {
+	font-size: 6pt; text-decoration:none; color: #000;
+}
+.small_comm_num_bg {
+	position: relative;
+	z-index: 0;
+	right: 4px;
+	top: 1px;
+}
+.small_comm_num_bg span + a {
+	color: #000;
+}
+
+.votewidget {
+	border: 1px solid #DDDDDD;
+	width: 90%;
+	display: block;
+	background-color: transparent;
+	margin: 5px auto 5px auto;
+}
+.votewidget .fore {
+	background-color: transparent;
+	width: 100%;
+	display: block;
+}
+.votewidget .back {
+	background-color: transparent;
+	width: 100%;
+	display: block;
+}
+.votewidget .votecount {
+	width: 23%;
+	padding-left: 2%;
+	float: left;
+}
+.votewidget .text {
+	width: 75%;
+	float: left;
+}
+.votewidget .title {
+	background-color: transparent;
+	width: 98%;
+	display: block;
+	padding-left: 2%;
+	font-weight: bold;
+	color: #666666;
+}
+/* Top posts widget */
+.votemicro {
+	border: 1px solid #fcaf22;
+	background-color: #fad89a;
+	color: #3D3D3D;
+	font-size: 0.8em; /*8*/
+	/*
+	width: 20px;
+	height: 10px;*/
+	text-align: center;
+	padding: 1px 4px 1px 4px;
+	margin: 3px 5px 0px 0px;
+	vertical-align: middle;
+	display: inline;
+	float: left;
+}
+.votemicrotext {
+	font-size: 1.2em; /* 12 */
+	vertical-align: middle;
+}
+
+.votedon {
+	font-size: 80%;
+	color: #88735b;
+	display: inline;
+	font-style: italic;
+}
+
+.votedon a {
+	color: #88735b;
+	text-decoration: none;
+}
+
+.votedon a:hover {
+    color: #f44365;
+}
+
+.voteclosed {
+	color: #ff0000;
+}
+
+.votelinkspace {
+	visibility: hidden;
+	width: 5px;
+}
+
+#voteli {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.votestats table {
+	width: 100%;
+}
+
+.votestats td {
+	white-space: nowrap;
+}
+
+.votestats span {
+	float: right;
+}
+
+.agendafuture {
+    color: #88735b;
+	padding-left: 20px;
+}
