@@ -1825,12 +1825,11 @@ function EventsEdit($event) {
 }
 
 function CreatePortal() {
-	global $wpdb;
-	$privatekey = '6LeLIhUTAAAAAGEZhu_g2AuZdg72aPUT8F8VHhTp';
+	global $wpdb, $reCAPTCHA;
 	$failed = false;
-	if (array_key_exists('recaptcha_challenge_field', $_POST)) {
-		$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-		if (!$resp->is_valid) {
+	if (array_key_exists('g-recaptcha-response', $_POST)) {
+		$resp = $_POST['g-recaptcha-response'];
+		if (!$reCAPTCHA->isValid($resp)) {
 			echo "<font color='red'><h3>Error: Incorrectly entered captcha!</h3></font>";
 			$failed = true;
 		}

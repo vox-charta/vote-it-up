@@ -186,8 +186,7 @@ VoteBulkEdit();
 }
 
 function VoteItUp_createportal () {
-	require_once('recaptchalib.php');
-	global $institution;
+	global $institution, $reCAPTCHA;
 	echo "<h2>Apply For a New Vox Charta Portal</h2>";
 	$result = CreatePortal();
 	if (isset($_POST) && $result) {
@@ -244,7 +243,7 @@ function VoteItUp_createportal () {
 	echo "Examples: <code>astrophguy</code>, <code>chandrasekhar</code>, <code>youngeinstein</code>";
 	echo "</td></tr>";
 	echo "</table>";
-	echo recaptcha_get_html('6LeLIhUTAAAAAMrbrip4wyW6zedEAULAS442EuI4');
+	echo $reCAPTCHA->getHtml();
 	echo "<input style='font-size: 30px; font-weight:bold;' type='submit' value='Submit Portal Application' name='submit' id='submit' class='button-secondary action' /><br />";
 	echo "<em>All fields are required.</em>";
 	echo "</form>";
