@@ -84,7 +84,7 @@ while ($rows < get_option('voteiu_widgetcount')) {
 			}
 			$voters_string = '<div><span class="votedon">';
 			if ($a['votes'][$i][0] + $a['guestvotes'][$i][0] > 0) {
-				$voters_string .= "<img src='http://voxcharta.org/wp-content/plugins/vote-it-up/thumbup_sm.png' height='12' width='12'> ";
+				$voters_string .= "<img src='https://voxcharta.org/wp-content/plugins/vote-it-up/thumbup_sm.png' height='12' width='12'> ";
 			}
 			if ($a['votes'][$i][0] > 0) {
 				for ($j = 0; $j < count($a['votenames'][$i]); $j++) {
@@ -92,7 +92,7 @@ while ($rows < get_option('voteiu_widgetcount')) {
 					//$style_str = ($a['votefutures'][$i][$j] == 1) ? " style='opacity:0.5;' " : "";
 					$voters_string .= "<span title='{$vote_time}'>";
 					if ($a['votepresents'][$i][$j] == 1) {
-						$voters_string .= "<img src='http://voxcharta.org/wp-content/plugins/vote-it-up/present_sm.png' height='12' width='12'> ";
+						$voters_string .= "<img src='https://voxcharta.org/wp-content/plugins/vote-it-up/present_sm.png' height='12' width='12'> ";
 					}
 					$voters_string .= $a['votenames'][$i][$j];
 				    if ($show_everyone) $voters_string .= ' (' . $a['voteinsts'][$i][$j] . ')';
@@ -108,7 +108,7 @@ while ($rows < get_option('voteiu_widgetcount')) {
 			}
 			if ($a['votes'][$i][0] + $a['guestvotes'][$i][0] > 0) $voters_string .= "&nbsp;&nbsp;";
 			if ($a['sinks'][$i][0] + $a['guestsinks'][$i][0] > 0) {
-				$voters_string .= ' <img src="http://voxcharta.org/wp-content/plugins/vote-it-up/thumbdown_sm.png" height="12" width="12"> ';
+				$voters_string .= ' <img src="https://voxcharta.org/wp-content/plugins/vote-it-up/thumbdown_sm.png" height="12" width="12"> ';
 			}
 			if ($a['sinks'][$i][0] > 0) {
 				for ($j = 0; $j < count($a['sinknames'][$i]); $j++) {
@@ -138,7 +138,7 @@ while ($rows < get_option('voteiu_widgetcount')) {
 				if (array_key_exists('wpo_arxivid', $post_custom)) {
 					$arxivid = $post_custom['wpo_arxivid'][0];
 					//$chstr = (is_chrome()) ? 'aps.' : '';
-					$pdf_link = 'http://arxiv.org/pdf/'.$arxivid;
+					$pdf_link = 'https://arxiv.org/pdf/'.$arxivid;
 					$voters_string .= "<span class=\"discusslink\"><a href=\"".$pdf_link."\">View PDF</a></span>&nbsp;&nbsp;";	
 				} else {
 					$voters_string .= "<span class=\"discusslink\">No PDF Available</span>&nbsp;&nbsp;";

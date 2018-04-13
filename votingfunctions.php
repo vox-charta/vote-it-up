@@ -1493,13 +1493,13 @@ function InstitutionEdit($institution_ID) {
 
 	if (!empty($_POST)) {
 		$cronstr =
-			"36,46,56 17 * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
-			"6,16,26,36,46,56 18 * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
-			"6,16,26,36,46,56 19-20 * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
-			//"1,11,21,31,41,51 0-10 * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
-			"00 18,19,20 * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/search-unleashed/reindex-posts.php\n"; //Only necessary because indexing post doesn't work with wp-o-matic for some reason...
-			//"1,11,21,31,41,51 19-23 * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n". //Emergency cron line
-			//"1,11,21,31,41,51 0-16 * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n". //Emergency cron line
+			"36,46,56 17 * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
+			"6,16,26,36,46,56 18 * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
+			"6,16,26,36,46,56 19-20 * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
+			//"1,11,21,31,41,51 0-10 * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n" .
+			"00 18,19,20 * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/search-unleashed/reindex-posts.php\n"; //Only necessary because indexing post doesn't work with wp-o-matic for some reason...
+			//"1,11,21,31,41,51 19-23 * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n". //Emergency cron line
+			//"1,11,21,31,41,51 0-16 * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/wp-o-matic-jfg/cron.php?code=7175e58b\n". //Emergency cron line
 		$institutions = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}votes_institutions WHERE name <> 'Unaffiliated' AND active = 1");
 		
 		date_default_timezone_set('US/Pacific');
@@ -1530,19 +1530,19 @@ function InstitutionEdit($institution_ID) {
 												   strtotime(date("m/d/Y", $disctime - 60*$delay)))/86400);
 							$normdaynum = ($normdaynum - $normdayshift - $tzshift) % 7;
 							if ($normdaynum < 0) $normdaynum = $normdaynum + 7;
-							$cronstr .= date("i G", $disctime - 60*$delay) . " * * ".$normdaynum." /usr/bin/curl http://voxcharta.org/wp-content/plugins/vote-it-up/cron.php?code=7175e58b\&institution=".urlencode($inst->name)."\&dayindex=".$i."\n";
+							$cronstr .= date("i G", $disctime - 60*$delay) . " * * ".$normdaynum." /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/vote-it-up/cron.php?code=7175e58b\&institution=".urlencode($inst->name)."\&dayindex=".$i."\n";
 						}
 					} else {
 						date_default_timezone_set($inst->timezone);
 						$disctime = strtotime($disctimes[0]);
 						date_default_timezone_set('US/Pacific');
 						$normdaynum = "0-6";
-						$cronstr .= date("i G", $disctime - 60*$delay) . " * * ".$normdaynum." /usr/bin/curl http://voxcharta.org/wp-content/plugins/vote-it-up/cron.php?code=7175e58b\&institution=".urlencode($inst->name)."\&dayindex=0\n";
+						$cronstr .= date("i G", $disctime - 60*$delay) . " * * ".$normdaynum." /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/vote-it-up/cron.php?code=7175e58b\&institution=".urlencode($inst->name)."\&dayindex=0\n";
 					}
 
 				}
 			}
-			$cronstr .= $reccrontime." * * 0-4 /usr/bin/curl http://voxcharta.org/wp-content/plugins/vote-it-up/recommend-cron.php?code=7175e58b\&institution=".urlencode($inst->name)."\n";
+			$cronstr .= $reccrontime." * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/vote-it-up/recommend-cron.php?code=7175e58b\&institution=".urlencode($inst->name)."\n";
 			$ic++;
 			if ($ic % 5 == 0) $rectime += 60;
 		}
@@ -1896,7 +1896,7 @@ function CreatePortal() {
 						 'usernames' => $_POST['usernames'],
 					 	 'code' => get_option('wpo_croncode'));
 		$query = http_build_query($arg_arr);
-		$link = 'http://harvard.voxcharta.org/wp-content/plugins/vote-it-up/confirm-new-portal.php?'.$query;
+		$link = 'https://voxcharta.org/wp-content/plugins/vote-it-up/confirm-new-portal.php?'.$query;
 		$email_from = "jguillochon@cfa.harvard.edu";
 		add_filter('wp_mail_from', create_function('', "return \"{$email_from}\"; "));
 		add_filter('wp_mail_from_name', create_function('', "return \"Vox Charta\"; "));
@@ -2751,14 +2751,14 @@ function GetVoteList($post_ID) {
 		if ($a['votes'][$i][0] + $a['guestvotes'][$i][0] > 0) {
 			$voters_string .= '<b>' . array_sum($a['votes'][$i]) . ' ';
 			$voters_string .= 
-				"<img src='http://voxcharta.org/wp-content/plugins/vote-it-up/thumbup_sm.png' style='height: 12px; width: 12px;'>'s:</b> ";
+				"<img src='https://voxcharta.org/wp-content/plugins/vote-it-up/thumbup_sm.png' style='height: 12px; width: 12px;'>'s:</b> ";
 		}
 		if ($a['votes'][$i][0] > 0) {
 			for ($j = 0; $j < count($a['votenames'][$i]); $j++) {
 				$vote_time = "Vote cast " . date("g:ia, m/d/Y", $a['votetimes'][$i][$j]);
 				$voters_string .= "<span title='{$vote_time}'>";
 				if ($a['votepresents'][$i][$j] == 1) {
-					$voters_string .= "<img src='http://voxcharta.org/wp-content/plugins/vote-it-up/present_sm.png' style='height: 12px; width: 12px;'> ";
+					$voters_string .= "<img src='https://voxcharta.org/wp-content/plugins/vote-it-up/present_sm.png' style='height: 12px; width: 12px;'> ";
 				}
 				$voters_string .= $a['votenames'][$i][$j];
 				if ($show_everyone) $voters_string .= ' (' . $a['voteinsts'][$i][$j] . ')';
@@ -2776,7 +2776,7 @@ function GetVoteList($post_ID) {
 		if ($a['sinks'][$i][0] + $a['guestsinks'][$i][0] > 0) {
 			$voters_string .= '<b>' . array_sum($a['sinks'][$i]) . ' ';
 			$voters_string .= 
-				"<img src='http://voxcharta.org/wp-content/plugins/vote-it-up/thumbdown_sm.png' style='height: 12px; width: 12px;'>'s:</b> ";
+				"<img src='https://voxcharta.org/wp-content/plugins/vote-it-up/thumbdown_sm.png' style='height: 12px; width: 12px;'>'s:</b> ";
 		}
 		if ($a['sinks'][$i][0] > 0) {
 			for ($j = 0; $j < count($a['sinknames'][$i]); $j++) {

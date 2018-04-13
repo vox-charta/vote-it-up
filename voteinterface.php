@@ -4,7 +4,7 @@ include_once('../../../wp-config.php');
 include_once('../../../wp-includes/wp-db.php');
 include_once('../../../wp-includes/pluggable.php');
 include_once("votingfunctions.php");
-header('HTTP/1.1 200 OK'); //Wordpress sends a 404 for some reason, override this (added by JFG).
+header('HTTP/2.0 200 OK'); //Wordpress sends a 404 for some reason, override this (added by JFG).
 global $show_everyone, $schedaffil, $institution, $wpdb;
 //$url_parts = explode('.', $_SERVER['HTTP_HOST']);
 //$sub_is_inst = false;

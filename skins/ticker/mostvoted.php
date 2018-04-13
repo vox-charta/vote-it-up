@@ -63,7 +63,7 @@
 		$poster_str = "<a href='{$poster_url}'>{$poster->display_name}</a>";
 		$inst_str = $wpdb->get_var("SELECT affiliation FROM {$wpdb->prefix}votes_users WHERE user='{$poster->ID}'");
 		echo ' by ' . $poster_str . ' from ' . $inst_str . ' on';
-		echo ' <a href="http://'.$institution->subdomain.'.voxcharta.org/'.date('Y/m/d', $post_time).'">' . date('m/d/Y', $post_time) . '</a>. ';
+		echo ' <a href="https://'.$institution->subdomain.'.voxcharta.org/'.date('Y/m/d', $post_time).'">' . date('m/d/Y', $post_time) . '</a>. ';
 		comments_popup_link(__('No Comments', 'arclite'), __('1 Comment', 'arclite'), __('% Comments', 'arclite'), 'comments', __('Comments off', 'arclite')); echo '. '; edit_post_link(__('Edit this post','arclite'),'','.');
 		echo '</p>';
 		?>

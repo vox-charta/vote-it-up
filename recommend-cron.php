@@ -186,8 +186,8 @@
 				$i++;
 				if ($i >= 5) break;
 			}
-			$content .= "\nTo see the latest astro-ph postings, visit the main page of Vox Charta:\nhttp://".strtolower($institution->subdomain).".voxcharta.org\n\nFor a more complete list of recommended papers from the last ".$reminddays." days, visit your \"Recommended Papers\" page:\nhttp://".strtolower($institution->subdomain).".voxcharta.org/recommended-papers\n\n"; 
-			$content .= "If you wish to no longer receive these periodic reminders or to alter your recommendation preferences, please visit the recommendation settings page on Vox Charta and uncheck the \"Send recommendation e-mails\" option:\nhttp://voxcharta.org/wp-admin/options-general.php?page=voteituprecommend";
+			$content .= "\nTo see the latest astro-ph postings, visit the main page of Vox Charta:\nhttps://".strtolower($institution->subdomain).".voxcharta.org\n\nFor a more complete list of recommended papers from the last ".$reminddays." days, visit your \"Recommended Papers\" page:\nhttps://".strtolower($institution->subdomain).".voxcharta.org/recommended-papers\n\n"; 
+			$content .= "If you wish to no longer receive these periodic reminders or to alter your recommendation preferences, please visit the recommendation settings page on Vox Charta and uncheck the \"Send recommendation e-mails\" option:\nhttps://voxcharta.org/wp-admin/options-general.php?page=voteituprecommend";
 
 			$email_from = (empty($institution->announcefrom)) ? 'jguillochon@cfa.harvard.edu' : $institution->announcefrom;
 			$headers = "From: Vox Charta for {$institution->name} <{$email_from}>\n\r";

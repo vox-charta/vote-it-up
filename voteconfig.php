@@ -195,10 +195,10 @@ function VoteItUp_createportal () {
 	}
 	echo "<h3>Instructions:</h3>";
 	echo "<ol>";
-	echo "<li>If you do not already have a Vox Charta user account, create an account <a href='http://{$institution->subdomain}.voxcharta.org/wp-login.php";
+	echo "<li>If you do not already have a Vox Charta user account, create an account <a href='https://{$institution->subdomain}.voxcharta.org/wp-login.php";
 	echo "?action=register&affiliation=CreatePortal&redirect_to=/tools/apply-for-portal/' target='_blank'>using this link</a> (note the regular registration page will not work).";
 	echo "If you already have an account, change your affiliation to \"Unaffiliated\" in your ";
-	echo "<a href='http://{$institution->subdomain}.voxcharta.org/wp-admin/profile.php' target='_blank'>user profile</a>. This account will become the \"liaison\" of the new portal. ";
+	echo "<a href='https://{$institution->subdomain}.voxcharta.org/wp-admin/profile.php' target='_blank'>user profile</a>. This account will become the \"liaison\" of the new portal. ";
 	echo "Multiple accounts can be designated as account liaisons, but <em>all</em> listed accounts must change their affiliations to \"Unaffiliated\" before the application ";
 	echo "will process successfully.";
 	echo "<li>Fill out all fields in the form below and press the \"Submit\" button.";

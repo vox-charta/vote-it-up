@@ -137,7 +137,7 @@
 		} else {
 			if (!$institution->announceplain) $mail_content = "\n--voxcharta\nContent-Type: text/html; charset=\"UTF-8\"\nContent-Transfer-Encoding: quoted-printable\n\n";
 			$mail_content .= "The ".strtolower($institution->primaryevent);
-			$mail_content .= " agenda is currently empty. Please browse the latest astro-ph postings at the main Vox Charta website (http://";
+			$mail_content .= " agenda is currently empty. Please browse the latest astro-ph postings at the main Vox Charta website (https://";
 			$mail_content .= strtolower($institution->name).".voxcharta.org) and cast your votes now before coming to ";
 			$mail_content .= strtolower($institution->primaryevent)."!\n".$br2;
 			if (!$institution->announceplain) $mail_content .= "\n\n--voxcharta--\n";

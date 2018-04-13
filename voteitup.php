@@ -53,7 +53,7 @@ if ($voteitup_path == '') {
 	$base = ABSPATH;
 	$base = str_replace("\\", "/", $base);
 	$edir = str_replace($base, "", $dir);
-	$edir = "http://".$_SERVER['HTTP_HOST']."/".$edir;
+	$edir = "https://".$_SERVER['HTTP_HOST']."/".$edir;
 	$edir = str_replace("\\", "/", $edir);
 	return $edir;
 } else {
@@ -193,7 +193,7 @@ function VoterStats($a = '') {
 	global $wpdb, $current_user;
 
 	if ($a == '') $a = VoterSort();
-	$page_address = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+	$page_address = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 	$address_parts = explode('?', $page_address);
 	$page_address = $address_parts[0];	
 ?>
@@ -248,7 +248,7 @@ function AuthorStats($a = '') {
 	global $wpdb, $current_user;
 
 	if ($a == '') $a = AuthorSort();
-	$page_address = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+	$page_address = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 	$address_parts = explode('?', $page_address);
 	$page_address = $address_parts[0];	
 ?>
@@ -266,7 +266,7 @@ function AuthorStats($a = '') {
 	while (1) {
 		$name = $a['name'][$i];
 		if ($name != '') {
-			if ($a['slug'][$i] != '') $name = '<a href="http://voxcharta.org/post_author/'.$a['slug'][$i].'">'.$name.'</a>';
+			if ($a['slug'][$i] != '') $name = '<a href="https://voxcharta.org/post_author/'.$a['slug'][$i].'">'.$name.'</a>';
 			echo '<tr><td>'.$name.'</td><td>'.$a['count'][$i].'</td><td>'.$a['votecount'][$i].'</td><td>'.$a['sinkcount'][$i].
 				'</td></tr>';
 		}
@@ -294,7 +294,7 @@ function InstitutionStats() {
 	global $wpdb, $institution;
 
 	$institutions = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}votes_institutions");
-	$page_address = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+	$page_address = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 	$address_parts = explode('?', $page_address);
 	$page_address = $address_parts[0];	
 ?>
@@ -522,22 +522,22 @@ function DisplayPost($post, $pd = null, $bpids = array(), $catsh = '', $sep = fa
 			<?php if (array_search($postID, $bpids) !== false) { echo '<div class="hirecommend">This paper is highly recommended for you!</div>'; } ?>
 			<span id="votelinks<?php echo $postID; ?>"><?php display_vote_info($postID, $user_ID); ?></span>
 
-			<div><span class="small_comm_num"><a href="<?php echo $pguid;?>#respond"><?php $comm_cnt = get_comment_count($postID); echo $comm_cnt['approved']; ?></a></span><span class="small_comm_num_bg"><a href="<?php echo $pguid;?>#respond"><img src="http://voxcharta.org/comment_icon_big.png" class="voteicon" alt='Comment on this paper'></a></span><a href="<?php echo $pguid;?>#respond">Comment</a>
+			<div><span class="small_comm_num"><a href="<?php echo $pguid;?>#respond"><?php $comm_cnt = get_comment_count($postID); echo $comm_cnt['approved']; ?></a></span><span class="small_comm_num_bg"><a href="<?php echo $pguid;?>#respond"><img src="https://voxcharta.org/comment_icon_big.png" class="voteicon" alt='Comment on this paper'></a></span><a href="<?php echo $pguid;?>#respond">Comment</a>
 		<?php if ($post->post_author == $user_ID || current_user_can( 'edit_others_posts', $user_ID)) {
-			echo "&nbsp;<a href='http://{$institution->subdomain}.voxcharta.org/wp-admin/post.php?action=edit&post={$post->ID}'><img src='http://{$institution->subdomain}.voxcharta.org/wp-content/plugins/vote-it-up/pencil.png' class='voteicon'>Edit this post</a>";
+			echo "&nbsp;<a href='https://{$institution->subdomain}.voxcharta.org/wp-admin/post.php?action=edit&post={$post->ID}'><img src='https://{$institution->subdomain}.voxcharta.org/wp-content/plugins/vote-it-up/pencil.png' class='voteicon'>Edit this post</a>";
 		} ?>
 		</div>
 		</div>
 			<?php DisplaySuggest($postID, $user_list); ?>
 		<?php } else { ?>
-		Please <a href="http://<?php echo $institution->subdomain;?>.voxcharta.org/wp-login.php?redirect_to=<?php echo $page_uri;?>">log in</a> or <a href="http://<?php echo $institution->subdomain;?>.voxcharta.org/wp-login.php?action=register&affiliation=<?php echo $institution->name; ?>&redirect_to=<?php echo $page_uri;?>">create an account</a>  to vote!
+		Please <a href="https://<?php echo $institution->subdomain;?>.voxcharta.org/wp-login.php?redirect_to=<?php echo $page_uri;?>">log in</a> or <a href="https://<?php echo $institution->subdomain;?>.voxcharta.org/wp-login.php?action=register&affiliation=<?php echo $institution->name; ?>&redirect_to=<?php echo $page_uri;?>">create an account</a>  to vote!
 		
 		<?php } ?>
 		<?php if (get_option('voteiu_allowguests') == 'true') { ?>
 			<?php if(!GuestVoted($postID,md5($_SERVER['REMOTE_ADDR']))) { ?>
-				<!--<br><img src="http://voxcharta.org/wp-content/plugins/vote-it-up/bite.png" class="voteicon"> Bite it!-->
+				<!--<br><img src="https://voxcharta.org/wp-content/plugins/vote-it-up/bite.png" class="voteicon"> Bite it!-->
 			<?php } else { ?>
-				<!--<br><img src="http://voxcharta.org/wp-content/plugins/vote-it-up/bite.png" class="voteicon"> Bitten.-->
+				<!--<br><img src="https://voxcharta.org/wp-content/plugins/vote-it-up/bite.png" class="voteicon"> Bitten.-->
 		<?php }} ?>
 		</div>
 		<?php } ?>
@@ -557,7 +557,7 @@ function DisplayPost($post, $pd = null, $bpids = array(), $catsh = '', $sep = fa
 			$inst_str = $wpdb->get_var("SELECT affiliation FROM {$wpdb->prefix}votes_users WHERE user='{$poster->ID}'");
 			echo ' by ' . $poster_str . ' from ' . $inst_str . ' on';
 		}
-		echo ' <a href="http://'.$institution->subdomain.'.voxcharta.org/'.date('Y/m/d', $post_time).'">' . date('m/d/Y', $post_time) . '</a></p>';
+		echo ' <a href="https://'.$institution->subdomain.'.voxcharta.org/'.date('Y/m/d', $post_time).'">' . date('m/d/Y', $post_time) . '</a></p>';
 		?>
 		</span>
 		<span class="postinfocats">
