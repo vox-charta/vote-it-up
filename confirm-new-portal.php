@@ -29,7 +29,8 @@
 			wp_update_user( array( 'ID' => $user->ID, 'role' => 'liaison' ) );
 			$wpdb->query($user_update_q);
 			$user_info = get_userdata($user->ID);
-			echo $user_info->user_login;
+			echo $user_info->user_login . "<br>";
+			echo $user_info->user_email;
 		}
 	}
 ?>
