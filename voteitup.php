@@ -522,7 +522,7 @@ function DisplayPost($post, $pd = null, $bpids = array(), $catsh = '', $sep = fa
 			<?php if (array_search($postID, $bpids) !== false) { echo '<div class="hirecommend">This paper is highly recommended for you!</div>'; } ?>
 			<span id="votelinks<?php echo $postID; ?>"><?php display_vote_info($postID, $user_ID); ?></span>
 
-			<div><span class="small_comm_num"><a href="<?php echo $pguid;?>#respond"><?php $comm_cnt = get_comment_count($postID); echo $comm_cnt['approved']; ?></a></span><span class="small_comm_num_bg"><a href="<?php echo $pguid;?>#respond"><img src="https://voxcharta.org/comment_icon_big.png" class="voteicon" alt='Comment on this paper'></a></span><a href="<?php echo $pguid;?>#respond">Comment</a>
+			<div><a href="<?php echo $pguid;?>#respond"><span class="small_comm_num_bg"><a href="<?php echo $pguid;?>#respond"><img src="https://voxcharta.org/comment_icon_big.png" class="voteicon" style="margin-bottom: -3px" alt='Comment on this paper'></a></span><a href="<?php echo $pguid;?>#respond">Comment (<?php $comm_cnt = get_comment_count($postID); echo $comm_cnt['approved']; ?>)</a></a>
 		<?php if ($post->post_author == $user_ID || current_user_can( 'edit_others_posts', $user_ID)) {
 			echo "&nbsp;<a href='https://{$institution->subdomain}.voxcharta.org/wp-admin/post.php?action=edit&post={$post->ID}'><img src='https://{$institution->subdomain}.voxcharta.org/wp-content/plugins/vote-it-up/pencil.png' class='voteicon'>Edit this post</a>";
 		} ?>

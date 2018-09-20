@@ -355,12 +355,14 @@ function VoteItUp_institutionpage() {
 	<tr valign="top">
 	<th scope="row" style="text-align: left;">Name of institution</th>
 	<td><input type="text" name="instname" id="instname" value="<?php echo $institution->name ?>" size=40 /><br />
+	Note: Do not use apostrophes in this field or your portal will not function properly.<br />
 	Example: <code>UCSC</code>
 	</td>
 	</tr>
 	<tr valign="top">
 	<th scope="row" style="text-align: left;">Subdomain</th>
 	<td><input type="text" name="subdomain" id="subdomain" value="<?php echo $institution->subdomain ?>" size=40 /><br />
+	Note: No numbers, spaces, or special characters should be used in this field, only alphabetical characters and/or the '-' character.<br />
 	Example: <code>ucsc</code>
 	</td>
 	</tr>
