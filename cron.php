@@ -23,6 +23,9 @@
 			foreach ($users as $user) {
 				$user_info = get_userdata($user);
 				if (in_array($user, $inst_users)) {
+					$vr = $wpdb->get_row("SELECT * FROM ".$wpdb->prefix."votes_recommend WHERE user='{$user}'", ARRAY_A);
+					$sendemail = $vr['sendemail'];
+					if (!$sendemail) continue;
 					array_push($email_tos, $user_info->user_email);
 				}
 			}
@@ -49,7 +52,7 @@
 			global $club_where_string;
 			return $where.$club_where_string;
 		}
-		$email_from = (empty($institution->announcefrom)) ? 'jguillochon@cfa.harvard.edu' : $institution->announcefrom;
+		$email_from = (empty($institution->announcefrom)) ? 'vox.charta.notifications@gmail.com' : $institution->announcefrom;
 		add_filter('wp_mail_from', create_function('', "return \"{$email_from}\"; "));
 		add_filter('wp_mail_from_name', create_function('', "return \"Vox Charta for {$institution->name}\"; "));
 		if ($institution->announceplain) {
@@ -110,6 +113,7 @@
 				$mail_content .= wordwrap(imap_8bit($post_string), 120, "\n", true);
 				if (!$institution->announceplain) $mail_content .= "\n\n--voxcharta--\n";
 				foreach($email_tos as $email_to) {
+					sleep(2);
 					wp_mail($email_to, "{$event->nicename} {$institution->location} {$time_str}!", $mail_content);
 					//For testing
 					//wp_mail("guillochon@gmail.com", "{$event->nicename} {$institution->location} {$time_str}!", $mail_content);
@@ -143,6 +147,7 @@
 			if (!$institution->announceplain) $mail_content .= "\n\n--voxcharta--\n";
 		}
 		foreach($email_tos as $email_to) {
+			sleep(2);
 			wp_mail($email_to, "{$institution->primaryevent} {$institution->location} {$time_str}!", $mail_content);
 			//For testing
 			//wp_mail("guillochon@gmail.com", "{$institution->primaryevent} {$institution->location} {$time_str}!", $mail_content);

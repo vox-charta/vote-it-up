@@ -70,7 +70,7 @@ function SetRecommend($user_ID) {
 		//entry exists, do nothing
 	} else {
 		//entry does not exist
-		$wpdb->query("INSERT INTO ".$wpdb->prefix."votes_recommend (user, showreplace, showcrosslist, sendemail, dontemail, reminddays, lastemailtime, bannedtags) VALUES(".$u_ID.", 0, 1, 1, 1, 21, 0, '') ") or die(mysql_error());
+		$wpdb->query("INSERT INTO ".$wpdb->prefix."votes_recommend (user, showreplace, showcrosslist, sendemail, dontemail, reminddays, lastemailtime, bannedtags) VALUES(".$u_ID.", 0, 1, 1, 0, 21, 0, '') ") or die(mysql_error());
 	}
 }
 
@@ -1473,7 +1473,7 @@ function InstitutionEdit($institution_ID) {
 			$inst_users = $wpdb->get_col("SELECT user FROM {$wpdb->prefix}votes_users WHERE affiliation='{$inst_name}'");
 			$liaisons = array_intersect($liaisons, $inst_users);
 			if (count($liaisons) <= 1) {
-				echo "<font color='red'><h3>Error: There must be at least one liaison for each portal, please add a replacement if you are removing yourself! If you would like to disable your institution's portal entirely, please e-mail the Vox Charta admin (jguillochon@cfa.harvard.edu).</h3></font>";
+				echo "<font color='red'><h3>Error: There must be at least one liaison for each portal, please add a replacement if you are removing yourself! If you would like to disable your institution's portal entirely, please e-mail the Vox Charta admin (guillochon@gmail.com).</h3></font>";
 			} else wp_update_user( array( 'ID' => $_POST['liaison'], 'role' => 'author' ) );
 		}
 	}
@@ -1544,7 +1544,7 @@ function InstitutionEdit($institution_ID) {
 			}
 			$cronstr .= $reccrontime." * * 0-4 /usr/bin/curl -k https://voxcharta.org/wp-content/plugins/vote-it-up/recommend-cron.php?code=7175e58b\&institution=".urlencode($inst->name)."\n";
 			$ic++;
-			if ($ic % 5 == 0) $rectime += 60;
+			$rectime += 90;
 		}
 
 		$cronhand = fopen("/var/spool/cron/apache", "w+");
@@ -1897,7 +1897,7 @@ function CreatePortal() {
 					 	 'code' => get_option('wpo_croncode'));
 		$query = http_build_query($arg_arr);
 		$link = 'https://voxcharta.org/wp-content/plugins/vote-it-up/confirm-new-portal.php?'.$query;
-		$email_from = "jguillochon@cfa.harvard.edu";
+		$email_from = "vox.charta.notifications@gmail.com";
 		add_filter('wp_mail_from', create_function('', "return \"{$email_from}\"; "));
 		add_filter('wp_mail_from_name', create_function('', "return \"Vox Charta\"; "));
 		add_filter('wp_mail_content_type', create_function('', 'return "multipart/alternative; boundary=voxcharta"; '));

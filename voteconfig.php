@@ -5,7 +5,7 @@ function VoteItUp_options() {
 	if (function_exists('add_options_page')) {
 		add_options_page("Vote It Up", "Vote It Up", "administrator", "voteitupconfig", "VoteItUp_optionspage");
 		add_options_page("Edit Votes", "Edit Votes", "administrator", "voteitupeditvotes", "VoteItUp_editvotespage");
-		add_options_page("Recommendations", "Recommendations", 0, "voteituprecommend", "VoteItUp_recommendpage");
+		add_options_page("Recommendations & Reminders", "Recommendations & Reminders", 0, "voteituprecommend", "VoteItUp_recommendpage");
 		add_options_page("Institution", "Institution", "edit_institution", "voteitupinstitution", "VoteItUp_institutionpage");
 		add_options_page("Events", "Events", "edit_institution", "voteitupevents", "VoteItUp_eventspage");
 	}
@@ -247,7 +247,7 @@ function VoteItUp_createportal () {
 	echo "<input style='font-size: 30px; font-weight:bold;' type='submit' value='Submit Portal Application' name='submit' id='submit' class='button-secondary action' /><br />";
 	echo "<em>All fields are required.</em>";
 	echo "</form>";
-	echo "<b><font color=red>If you encounter any issues with this form please e-mail <a href='mailto:jguillochon@cfa.harvard.edu'>Vox Charta's administrator</a>.</font></b>";
+	echo "<b><font color=red>If you encounter any issues with this form please e-mail <a href='mailto:guillochon@gmail.com'>Vox Charta's administrator</a>.</font></b>";
 }
 
 function VoteItUp_recommendpage() {
@@ -264,12 +264,12 @@ function VoteItUp_recommendpage() {
 	<form method="post" action="">
 	<table class="form-table" border="0">
 	<tr valign="top">
-	<th scope="row" style="text-align: left;">Send me recommendation e-mails</th>
+	<th scope="row" style="text-align: left;">Send me recommendation and discussion reminder e-mails</th>
 	<td>
 	<input type="hidden" name="sendemail" value=0 /><input type="checkbox" name="sendemail" id="sendemail" value=1 <?php if ($vr['sendemail']) { echo ' checked="checked"'; } ?> />
 	</td></tr>
 	<tr valign="top">
-	<th scope="row" style="text-align: left;">Don't e-mail me if I have voted recently</th>
+	<th scope="row" style="text-align: left;">Don't send me recommendation e-mails if I have voted recently</th>
 	<td>
 	<input type="hidden" name="dontemail" value=0 /><input type="checkbox" name="dontemail" id="dontemail" value=1 <?php if ($vr['dontemail']) { echo ' checked="checked"'; } ?> /><br />
 	Note: Reminder e-mails are only sent if you haven't voted in the number of days defined by recommendation day limit below.
